@@ -12,11 +12,20 @@ const Expenses = (props) =>{
       console.log(oldExpenses);
     }
 
-    const [enteredYear, setEnteredYear] = useState("");  
+    const [enteredYear, setEnteredYear] = useState("2019");  
   
+    let infoDate = "2020, 2021 & 2022";
+
+    if(enteredYear === "2020"){
+      infoDate = "2019, 2021 & 2022"
+    }else if(enteredYear === "2021"){
+      infoDate = "2019, 2020 & 2022"
+    }else if(enteredYear === "2022"){
+      infoDate = "2019, 2020 & 2021"
+    }
+
     const onChangeYearHandler = (selectedYear) =>{
-      setEnteredYear(selectedYear);
-    
+      setEnteredYear(selectedYear);  
       console.log(selectedYear)
     }
     return (
@@ -26,6 +35,9 @@ const Expenses = (props) =>{
   
         <div>
           <ExpensesFilter selected={enteredYear} onChangeYear={onChangeYearHandler} />
+          <p className="text-white conform-padding">
+            Data for years {infoDate} is hidden.
+          </p>
         </div>
               {oldExpenses.map((item) => {
                 return (
